@@ -6,15 +6,22 @@ $(function(){
       // async - how do we wait for the data to finish
       // loading before executing the next task?
       getDataFromEndpointAsync(function(data){
-          let taxiPos = {
-            lat: data[0][1],
-            lng: data[0][0]
-          };
-          console.log(taxiPos);
-          new google.maps.Marker({
-              position: taxiPos,
-              map: map
-          })
+          
+          // for each taxi inside the data
+          for (let taxi of data)
+          {
+            let taxiPos = {
+                lat: taxi[1],
+                lng: taxi[0]
+              };
+      
+              new google.maps.Marker({
+                  position: taxiPos,
+                  map: map
+              })
+          }
+          
+        
       });
       
     })
